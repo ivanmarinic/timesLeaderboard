@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Time>
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Times List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Create" asp-controller="Time" class="btn btn-primary">Add New Time</a>
+        </div>
+    </div>
+
+    <br />
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Time
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td width="50%">@obj.Name @obj.Surname</td>
+                    <td width="30%">@obj.TimeValue</td>
+                    <div id="PlaceHolderHere"></div>
+                        <td class="text-center">
+                            <div class="w-75 btn-group" role="group">
+                                <button asp-controller="Time" asp-route-Id="@obj.TimeId" class="btn btn-danger"
+                                        data-toggle="ajax-modal" data-target="#deleteTime" data-url="@Url.Action("Delete", new { id = obj.TimeId })">
+                                    Delete
+                                </button>
+
+                    </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
